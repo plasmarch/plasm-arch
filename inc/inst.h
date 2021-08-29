@@ -1,11 +1,9 @@
+#pragma once
+
 typedef char byte;
 typedef short dword;
 
-/*
-Instructions are sorted by opcode.
-*/
-
-void nop(void); // 0x01
+void nop(void);
 void _int(byte);
 void mov(byte, byte);
 void jmp(byte);
@@ -72,4 +70,33 @@ void nxip(byte);
 void jb(void);
 void nmov(byte, byte);
 void ncmp(byte, byte);
-void sub(byte, byte); // 0x44
+void sub(byte, byte);
+
+enum {
+	eax = 0xF5,
+	ebx,
+	ecx,
+	edx,
+	eflgs,
+	ec2,
+	eip,
+	ec1,
+	esl,
+	ec0,
+	ec3
+};
+
+enum {
+	BIOSCALL,
+	RTC,
+	POWEROFF,
+	DIVBY0,
+	INVALIDOP,
+	WRITEERROR,
+	SEGSWITCH,
+	ALLOWEXEC,
+	READFAIL,
+	SYSAPI,
+	DISKWRITE,
+	ENABLEINTERUPT
+};
