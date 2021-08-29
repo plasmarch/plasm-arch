@@ -103,6 +103,7 @@ enum {
 
 typedef long reg;
 
+reg eax, ebx, ecx, edx, eflgs, eip, esl;
 union {
 	reg v;
 	struct {
@@ -113,7 +114,7 @@ union {
 		byte drive : 4; // active drive
 		byte reserved : 4; // reserved
 	};
-}_ec0; // control register 0
+}ec0; // control register 0
 union {
 	reg v;
 	struct {
@@ -128,7 +129,7 @@ union {
 		byte ptrseg : 3; // pointer segment
 		byte reserved : 3; // reserved
 	};
-}_ec1; // control register 1
+}ec1; // control register 1
 union {
 	reg v;
 	struct {
@@ -136,7 +137,7 @@ union {
 		byte y; // console y
 		dword ihtl; // interupt handler lock controller
 	};
-}_ec2; // contorl register 2
+}ec2; // contorl register 2
 union {
 	reg v;
 	struct {
@@ -144,4 +145,12 @@ union {
 		byte jmpadr : 8; // nxip
 		byte inint : 1; // in interupt
 	};
-}_ec3; // control register 3
+}ec3; // control register 3
+
+enum {
+	BANK1 = 0x1, // 256-byte
+	BANK2,       // 256-byte
+	DRIVE,       // 4096-byte
+	FLOPPY,      // 1024-byte
+	BIOS         // 64-byte: Read only
+};
