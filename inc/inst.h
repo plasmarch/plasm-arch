@@ -100,3 +100,48 @@ enum {
 	DISKWRITE,
 	ENABLEINTERUPT
 };
+
+typedef long reg;
+
+union {
+	reg v;
+	struct {
+		byte sews; // seg write
+		byte sexs; // seg exec
+		byte active : 4; // active seg
+		byte interupt : 4; // interupt handling segment
+		byte drive : 4; // active drive
+		byte reserved : 4; // reserved
+	};
+}_ec0; // control register 0
+union {
+	reg v;
+	struct {
+		byte calls : 1; // in call or not 
+		byte preadr; // used for jb
+		byte ptrreg : 3; // register mapped to
+		byte ptradr; // address
+		byte ptractive : 1; // activity
+		byte intactive : 1; // interupts enabled
+		byte hlted : 1; // cpu halted
+		byte executing : 3; // executing segment
+		byte ptrseg : 3; // pointer segment
+		byte reserved : 3; // reserved
+	};
+}_ec1; // control register 1
+union {
+	reg v;
+	struct {
+		byte x; // console x
+		byte y; // console y
+		dword ihtl; // interupt handler lock controller
+	};
+}_ec2; // contorl register 2
+union {
+	reg v;
+	struct {
+		byte activeint : 4; // active interupt id
+		byte jmpadr : 8; // nxip
+		byte inint : 1; // in interupt
+	};
+}_ec3; // control register 3
