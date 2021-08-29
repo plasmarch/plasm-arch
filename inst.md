@@ -1,6 +1,6 @@
 # Instructions
 
-## nop - 0x01
+## nop
 Does nothing.
 
 No operands.
